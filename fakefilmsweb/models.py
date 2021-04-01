@@ -35,6 +35,3 @@ class Episode(models.Model):
     season = models.CharField(max_length=30)
     number = models.IntegerField()
     name = models.CharField(max_length=30)
-
-    def __str__(self):
-        return self.name
