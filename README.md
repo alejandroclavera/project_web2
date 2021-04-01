@@ -2,6 +2,7 @@
 ## Summary
   - [Introduction](#introduction)
   - [Project idea](#project-idea)
+  - [Instructions](#instructions)
   - [Requirements](#requirements)
   - [Teachers](#teachers)
   - [Authors](#authors)
@@ -14,6 +15,12 @@ This is the repository of the project of this subject.
 The idea of our project is a web application that allows its registered users to access an online library that contains movies and series (similar to Netflix). The main difference that will exist between our idea and Netflix (or similar online apps that already exist) is that the platform which are we are going to be developing this project in will be completely free.
 
 The main goal we are trying to achieve with this project will is to understand how a movie streaming service works through with a web application.
+
+## Instructions
+To run the project you need to follow the following instructions:
+```
+  freeze > requirements.txt
+```
 
 ## Requirements
 In the document named **requirements.txt** you will find the requirements to execute the web application.
