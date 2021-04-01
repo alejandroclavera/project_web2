@@ -9,6 +9,12 @@ class User(models.Model):
     def __str__(self):
         return self.user_name
 
+class Distributor(models.Model):
+    distributor_name=models.CharField(max_length=30)
+
+     def __str__(self):
+        return self.distributor_name
+
 
 class Series(models.Model):
     name = models.CharField(max_length=30)
@@ -17,3 +23,11 @@ class Series(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Movie(models.Model):
+    movie_name= models.CharField(max_length=30)
+    movie_category= models.CharField(max_length=50)
+    def __str__(self):
+        return self.movie_name
+
