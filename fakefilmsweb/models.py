@@ -25,7 +25,7 @@ class Movie(models.Model):
 class Serie(models.Model):
     name = models.CharField(max_length=30)
     category = models.CharField(max_length=30)
-    seasons = models.IntegerField()
+    number_of_seasons = models.IntegerField(default=1)
     def __str__(self):
         return self.name
 

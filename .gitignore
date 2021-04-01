@@ -1,7 +1,10 @@
 # Ignore the entire venv folder
 venv/
+.venv/
 # Ignore the entire idea folder
-.idea/
+.idea
+# Ignore the entire code folder
+.vscode
 .DS_Store
 *.pyc
 
