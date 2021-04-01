@@ -2,4 +2,5 @@
 venv/
 # Ignore the entire idea folder
 .idea/
+.DS_Store
 
