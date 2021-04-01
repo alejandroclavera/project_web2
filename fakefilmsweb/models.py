@@ -10,4 +10,10 @@ class User(models.Model):
         return self.user_name
 
 
-    
+class Series(models.Model):
+    name = models.CharField(max_length=30)
+    category = models.CharField(max_length=30)
+    seasons = models.IntegerField()
+
+    def __str__(self):
+        return self.name
