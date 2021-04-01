@@ -15,8 +15,14 @@ class Distributor(models.Model):
      def __str__(self):
         return self.distributor_name
 
+class Movie(models.Model):
+    movie_name= models.CharField(max_length=30)
+    movie_category= models.CharField(max_length=50)
 
-class Series(models.Model):
+    def __str__(self):
+        return self.movie_name
+
+class Serie(models.Model):
     name = models.CharField(max_length=30)
     category = models.CharField(max_length=30)
     seasons = models.IntegerField()
@@ -24,10 +30,11 @@ class Series(models.Model):
     def __str__(self):
         return self.name
 
+class Episode(models.Model):
+    serie = models.ForeignKey(Serie,on_delete=models.CASCADE)
+    season = models.CharField(max_length=30)
+    number = models.IntegerField()
+    name = models.CharField(max_length=30)
 
-class Movie(models.Model):
-    movie_name= models.CharField(max_length=30)
-    movie_category= models.CharField(max_length=50)
     def __str__(self):
-        return self.movie_name
-
+        return self.name
