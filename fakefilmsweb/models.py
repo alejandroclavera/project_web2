@@ -12,8 +12,18 @@ class User(models.Model):
 class Distributor(models.Model):
     distributor_name=models.CharField(max_length=30)
 
-    def __str__(self):
+     def __str__(self):
         return self.distributor_name
+
+
+class Series(models.Model):
+    name = models.CharField(max_length=30)
+    category = models.CharField(max_length=30)
+    seasons = models.IntegerField()
+
+    def __str__(self):
+        return self.name
+
 
 class Movie(models.Model):
     movie_name= models.CharField(max_length=30)
@@ -21,3 +31,4 @@ class Movie(models.Model):
 
     def __str__(self):
         return self.movie_name
+
