@@ -1,2 +1,2 @@
 release: python manage.py migrate
-web: gunicorn fakefilms.wsgi
+web: gunicorn fakefilms.wsgi --log-file -
