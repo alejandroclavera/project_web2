@@ -3,7 +3,7 @@
   - [Introduction](#introduction)
   - [Project idea](#project-idea)
   - [Requirements](#requirements)
-  - [How to deply the application in heroku](#How-to-deply-the-application-in-heroku])
+  - [How to deploy the application in heroku](#How-to-deply-the-application-in-heroku])
   - [Teachers](#teachers)
   - [Authors](#authors)
 
@@ -26,10 +26,10 @@ This are the commands to save the requirements:
   freeze > requirements.txt
 ```
 
-## How to deply the application in heroku
+## How to deploy the application in heroku
 To deploy the project in heroku you need to follow the following instructions:
 ```
-  freeze > requirements.txt
+  heroku login
 ```
 
 ## Teachers
