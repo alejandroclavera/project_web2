@@ -2,8 +2,8 @@
 ## Summary
   - [Introduction](#introduction)
   - [Project idea](#project-idea)
-  - [Instructions](#instructions)
   - [Requirements](#requirements)
+  - [How to deply the application in heroku](#How-to-deply-the-application-in-heroku])
   - [Teachers](#teachers)
   - [Authors](#authors)
 
@@ -16,12 +16,6 @@ The idea of our project is a web application that allows its registered users to
 
 The main goal we are trying to achieve with this project will is to understand how a movie streaming service works through with a web application.
 
-## Instructions
-To run the project you need to follow the following instructions:
-```
-  freeze > requirements.txt
-```
-
 ## Requirements
 In the document named **requirements.txt** you will find the requirements to execute the web application.
 This are the commands to save the requirements:
@@ -31,6 +25,13 @@ This are the commands to save the requirements:
 ```
   freeze > requirements.txt
 ```
+
+## How to deply the application in heroku
+To deploy the project in heroku you need to follow the following instructions:
+```
+  freeze > requirements.txt
+```
+
 ## Teachers
 The teachers who have guided this project are:
 - [Carles Mateu](https://github.com/carlesm)
