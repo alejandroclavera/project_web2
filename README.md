@@ -3,7 +3,7 @@
   - [Introduction](#introduction)
   - [Project idea](#project-idea)
   - [Requirements](#requirements)
-  - [How to deploy the application in heroku](#How-to-deply-the-application-in-heroku])
+  - [How to deploy the application in heroku](#How-to-deply-the-application-in-heroku)
   - [Teachers](#teachers)
   - [Authors](#authors)
 
@@ -57,9 +57,13 @@ To deploy the project in heroku you need to follow the following instructions:
 ```
   git push heroku master
 ```
-
+8- Migrate DB:
 ```
-  heroku login
+  heroku run python manage.py migrate
+```
+9- Create superuser:
+```
+  heroku run python manage.py createsuperuser 
 ```
 
 ## Teachers
