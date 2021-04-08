@@ -28,6 +28,36 @@ This are the commands to save the requirements:
 
 ## How to deploy the application in heroku
 To deploy the project in heroku you need to follow the following instructions:
+
+1- Copy all the document files in a new folder.
+2- We make sure that Procfile file exist.
+```
+  web: gunicorn fakefilms.wsgi
+```
+3- We make sure that requeriments.txt exist with all dependencies.
+4- Create a new repository:
+```
+  git init
+  git add .
+  git commit -m "heroku deployment"
+```
+5- Login in heroku:
+```
+  heroku login
+```
+6- Create new application in heroku:
+```
+  heroku create fakefilm
+```
+6.1- In case that the application is already created:
+```
+  heroku git:remote -a fakefilms
+```
+7- Push the new repository to the new heroku application:
+```
+  git push heroku master
+```
+
 ```
   heroku login
 ```
