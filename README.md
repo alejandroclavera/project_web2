@@ -62,7 +62,7 @@ To deploy the project in heroku you need to follow the following instructions:
 ```
 8- Configure the django environment variables:
 ```
-  heroku config:set DJANGO_SETTINGS_MODULE=myrecommendations.settings_heroku
+  heroku config:set DJANGO_SETTINGS_MODULE=fakefilms.settings_heroku
 ```
 9- Migrate the DB:
 ```
