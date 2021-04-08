@@ -3,6 +3,7 @@
   - [Introduction](#introduction)
   - [Project idea](#project-idea)
   - [Requirements](#requirements)
+  - [How to run the application](#How-to-run-the-application)
   - [How to deploy the application in heroku](#How-to-deploy-the-application-in-heroku)
   - [Teachers](#teachers)
   - [Authors](#authors)
@@ -24,7 +25,11 @@ The document named **requirements.txt** should include the following dependencie
   django-heroku 
   whitenoise
 ```
-
+## How to run the application
+To run the application you have to execute the following commands:
+```
+docker-compose up
+```
 ## How to deploy the application in heroku
 To deploy the project in heroku you need to follow the following instructions:
 1- Copy all the document files in a new folder.
