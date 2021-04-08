@@ -3,7 +3,7 @@
   - [Introduction](#introduction)
   - [Project idea](#project-idea)
   - [Requirements](#requirements)
-  - [How to deploy the application in heroku](#How-to-deply-the-application-in-heroku)
+  - [How to deploy the application in heroku](#How-to-deploy-the-application-in-heroku)
   - [Teachers](#teachers)
   - [Authors](#authors)
 
