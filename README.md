@@ -17,18 +17,16 @@ The idea of our project is a web application that allows its registered users to
 The main goal we are trying to achieve with this project will is to understand how a movie streaming service works through with a web application.
 
 ## Requirements
-In the document named **requirements.txt** you will find the requirements to execute the web application.
-This are the commands to save the requirements:
+The document named **requirements.txt** should include the following dependencies:
 ```
-  python -m pip freeze
-``` 
-```
-  freeze > requirements.txt
+  Django==3.1.7 
+  gunicorn==20.1.0 
+  django-heroku 
+  whitenoise
 ```
 
 ## How to deploy the application in heroku
 To deploy the project in heroku you need to follow the following instructions:
-
 1- Copy all the document files in a new folder.
 2- We make sure that Procfile file exist.
 ```
@@ -57,11 +55,15 @@ To deploy the project in heroku you need to follow the following instructions:
 ```
   git push heroku master
 ```
-8- Migrate DB:
+8- Configure the django environment variables:
+```
+  heroku config:set DJANGO_SETTINGS_MODULE=myrecommendations.settings_heroku
+```
+9- Migrate the DB:
 ```
   heroku run python manage.py migrate
 ```
-9- Create superuser:
+10- Create superuser:
 ```
   heroku run python manage.py createsuperuser 
 ```
@@ -79,4 +81,3 @@ This project have been developed by:
 - [Didac Colominas Abalde](https://github.com/ColoAlfa)
 - [Miguel Ángel Barraza](https://github.com/Miguebaso)
 - [Jordi Lazo](https://github.com/JordiLazo)
- 
