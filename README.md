@@ -40,6 +40,7 @@ To deploy the project in heroku you need to follow the following instructions:
   web: gunicorn fakefilms.wsgi
 ```
 3- We make sure that requeriments.txt exist with all dependencies.
+
 4- Create a new repository:
 ```
   git init
