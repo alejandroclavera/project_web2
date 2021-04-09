@@ -33,6 +33,7 @@ docker-compose up
 ## How to deploy the application in heroku
 To deploy the project in heroku you need to follow the following instructions:
 1- Copy all the document files in a new folder.
+
 2- We make sure that Procfile file exist.
 ```
   web: gunicorn fakefilms.wsgi
