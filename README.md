@@ -39,14 +39,13 @@ To deploy the project in heroku you need to follow the following instructions:
 ```
   web: gunicorn fakefilms.wsgi
 ```
-3- We make sure that requeriments.txt exist with all dependencies.
+3- We make sure that [requeriments.txt](#requirements) exist with all the following dependencies:
 ```
   Django==3.1.7 
   gunicorn==20.1.0 
   django-heroku 
   whitenoise
 ```
-Review the section [Requeriments](#requirements).
 4- Create a new repository:
 ```
   git init
