@@ -46,7 +46,7 @@ To deploy the project in heroku you need to follow the following instructions:
   django-heroku 
   whitenoise
 ```
-Review the section Requeriments(#requirements).
+Review the section [Requeriments](#requirements).
 4- Create a new repository:
 ```
   git init
