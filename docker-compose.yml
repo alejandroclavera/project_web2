@@ -1,9 +1,8 @@
-version: "2.0"
+version: "3.9"
 
 services:
   web:
-    build: .
-        
+    build: .  
     container_name: fakefilms
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
