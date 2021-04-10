@@ -26,6 +26,30 @@ The document named **requirements.txt** should include the following dependencie
   whitenoise
 ```
 ## How to run the application
+```
+FROM python:latest
+ENV PYTHONUNBUFFERED=1
+RUN mkdir /app
+WORKDIR /app
+COPY requirements.txt /app/
+RUN pip install -r requirements.txt
+COPY . /app
+```
+
+```
+version: "3.9"
+
+services:
+  web:
+    build: .  
+    container_name: fakefilms
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+```
+
 To run the application you have to execute the following commands:
 ```
 docker-compose up
