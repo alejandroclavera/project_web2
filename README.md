@@ -25,7 +25,8 @@ The document named **requirements.txt** should include the following dependencie
   django-heroku 
   whitenoise
 ```
-## How to run the application
+## How to run the application with docker
+To run the application as a docker container orchestration we need to have the Dockerfile with the following content
 ```
 FROM python:latest
 ENV PYTHONUNBUFFERED=1
@@ -35,7 +36,7 @@ COPY requirements.txt /app/
 RUN pip install -r requirements.txt
 COPY . /app
 ```
-
+We also need the file docker-compose.yml with the following content
 ```
 version: "3.9"
 
@@ -50,7 +51,7 @@ services:
       - "8000:8000"
 ```
 
-To run the application you have to execute the following commands:
+Finally, to run the application you have to execute the following commands:
 ```
 docker-compose up
 ```
