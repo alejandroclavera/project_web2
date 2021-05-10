@@ -1,0 +1,14 @@
+{% extends "fakefilmsweb/base.html" %}
+{% block content %}
+<h1>
+    MOVIES
+    {% if user.is_authenticated %}(<a href="{% url 'fakefilmsweb:create_movie' %}">add</a>){% endif %}
+</h1>
+<ul>
+    {% for movie in movies_list %}
+        <li><a href="">
+            {{ movie.movie_name }}</a></li>
+    {% empty %}<li>Sorry, no movies registered yet.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static "style/base.css" %}" />
+    <title>{% block title %}FakeFimls{% endblock %}</title>
+</head>
+
+<body>
+
+<div id="header">
+    {% block header %}
+        {% if user.is_authenticated %}
+            <p>User: {{ user.username }} | <a href="{% url 'logout' %}">logout</a></p>
+        {% else %}
+            <p><a href="{% url 'login' %}">login</a></p>
+        {% endif %}
+    {% endblock %}
+</div>
+
+<div id="sidebar">
+    {% block sidebar %}
+        <ul>
+            <li><a href="/fakefilmsweb/">Home</a></li>
+            <li><a href="">My movies</a></li>
+            <li><a href="">My serie</a></li>
+        </ul>
+    {% endblock %}
+</div>
+
+<div id="content">
+    {% block content %}
+        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+    {% endblock %}
+</div>
+
+<div id="footer">
+    {% block footer %}{% endblock %}
+</div>
+
+</body>
+</html>

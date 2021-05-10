@@ -16,9 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views
+from django.views.generic import RedirectView
 
 urlpatterns = [
-    path('', views.LoginView.as_view(), name='login'),
+    path('', RedirectView.as_view(pattern_name='fakefilmsweb:movie_list'), name='home'),
     path('fakefilmsweb/', include('fakefilmsweb.urls', namespace='fakefilmsweb')),
+    path('login/', views.LoginView.as_view(), name='login'),
+     path('logout/', views.LogoutView.as_view(), name='logout'),
     path('admin/', admin.site.urls),
 ]
