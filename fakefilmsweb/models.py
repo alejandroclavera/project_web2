@@ -15,6 +15,7 @@ class Movie(models.Model):
     movie_name= models.CharField(max_length=30)
     movie_category= models.CharField(max_length=50)
     distributor = models.ForeignKey(Distributor, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.movie_name
@@ -34,6 +35,7 @@ class Serie(models.Model):
     serie_name = models.CharField(max_length=30)
     category = models.CharField(max_length=30)
     number_of_seasons = models.IntegerField(default=1)
+    user = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.serie_name
@@ -53,6 +55,7 @@ class Episode(models.Model):
     season = models.CharField(max_length=30)
     number = models.IntegerField()
     name = models.CharField(max_length=30)
+    user = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

@@ -1,0 +1,14 @@
+{% extends "fakefilmsweb/base.html" %}
+{% block content %}
+<h1>
+    {{movie.movie_name}}
+    {% if user.is_authenticated and user == movie.user %}
+    (<a href="{% url 'fakefilmsweb:movie_edit' movie.id %}">edit</a>,
+     <a href="{% url 'fakefilmsweb:movie_delete' movie.id %}">remove</a>)
+    {% endif %}
+</h1>
+<ul>
+    <li>{{movie.movie_category}}</li>
+    <li>{{movie.distributor}}</li>
+</ul>
+{% endblock %}

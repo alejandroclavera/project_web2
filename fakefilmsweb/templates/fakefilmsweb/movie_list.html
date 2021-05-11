@@ -6,7 +6,7 @@
 </h1>
 <ul>
     {% for movie in movies_list %}
-        <li><a href="">
+        <li><a href="{% url 'fakefilmsweb:info_movie' movie.id %}">
             {{ movie.movie_name }}</a></li>
     {% empty %}<li>Sorry, no movies registered yet.</li>
     {% endfor %}
