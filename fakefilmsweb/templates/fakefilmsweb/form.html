@@ -1,6 +1,8 @@
 {% extends "fakefilmsweb/base.html" %}
 {% load static %}
-
+{% block head %}
+<script src="{% static "js/autocompleteMovies.js" %}"></script>
+{% endblock %}
 {% block content %}
     <form method="post" enctype="multipart/form-data" action="">
         {% csrf_token %}

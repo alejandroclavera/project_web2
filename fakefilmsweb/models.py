@@ -48,6 +48,8 @@ class Serie(models.Model):
             ratingSum = sum([float(review.rating) for review in self.moviereview_set.all()])
             return ratingSum / reviewCount
 
+    def get_absolute_url(self):
+        return reverse('fakefilmsweb:serie_list')
 
 # Model Episode
 class Episode(models.Model):

@@ -1,0 +1,14 @@
+{% extends "fakefilmsweb/base.html" %}
+{% block content %}
+<h1>
+    {{serie.serie_name}}
+    {% if user.is_authenticated and user == serie.user %}
+    (<a href="{% url 'fakefilmsweb:serie_edit' serie.id %}">edit</a>,
+     <a href="{% url 'fakefilmsweb:serie_delete' serie.id %}">remove</a>)
+    {% endif %}
+</h1>
+<ul>
+    <li>{{serie.category}}</li>
+    <li>{{movie.distributor}}</li>
+</ul>
+{% endblock %}

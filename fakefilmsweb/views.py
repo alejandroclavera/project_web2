@@ -5,8 +5,8 @@ from django.core.exceptions import PermissionDenied
 from django.utils.decorators import method_decorator
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import DetailView
-from fakefilmsweb.models import Movie, MovieReview
-from fakefilmsweb.forms import MovieForm
+from fakefilmsweb.models import Movie, MovieReview, Serie, SerieReview
+from fakefilmsweb.forms import MovieForm, SerieForm
 
 # Requerimets
 class LoginRequiredMixin(object):
@@ -22,12 +22,14 @@ class CheckIsOwnerMixin(object):
         return obj
 
 class LoginRequiredCheckIsOwnerUpdateView(LoginRequiredMixin, CheckIsOwnerMixin, UpdateView):
-    template_name = 'fakefilmsweb/movie_form.html'
+    template_name = 'fakefilmsweb/form.html'
 
 # Aplication Views
+
+# Movies Views
 class CreateMovie(CreateView):
     model = Movie
-    template = 'fakefilms/movieForm.html'
+    template_name = 'fakefilmsweb/form.html'
     form_class = MovieForm
 
     def form_valid(self, form):
@@ -43,6 +45,26 @@ class InfoMovie(DetailView):
         context['RATING'] = MovieReview.RATING_CHOICES
         return context
 
+# Series View
+class CreateSerie(CreateView):
+    model = Serie
+    template_name = 'fakefilmsweb/form.html'
+    form_class = SerieForm
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super(CreateSerie, self).form_valid(form)
+
+class InfoSerie(DetailView):
+    model = Serie
+    template_name = 'fakefilmsweb/info_serie.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(InfoSerie, self).get_context_data(**kwargs)
+        context['RATING'] = SerieReview.RATING_CHOICES
+        return context
+
+
 @login_required()
 def delete_movie(request, pk):
     movie = get_object_or_404(Movie, pk=pk)
@@ -52,3 +74,11 @@ def delete_movie(request, pk):
     else:
         return HttpResponse('<h1>CAN\'T DELETE MOVIE<h1>')
 
+@login_required()
+def delete_serie(request, pk):
+    serie = get_object_or_404(Serie, pk=pk)
+    if serie.user == request.user:
+        serie.delete()
+        return HttpResponse('<h1>Serie DELETED<h1>')
+    else:
+        return HttpResponse('<h1>CAN\'T DELETE Serie<h1>')
