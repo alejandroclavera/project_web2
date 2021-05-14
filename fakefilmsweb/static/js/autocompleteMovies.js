@@ -6,7 +6,8 @@ $(function() {
                 dataType: "json",
                 data: {
                     apikey: "4071f461",
-                    t: request.term
+                    t: request.term,
+                    type: "movie"
                 },
                 success: function(data) {
                     data = {data};

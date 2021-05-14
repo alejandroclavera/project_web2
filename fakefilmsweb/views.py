@@ -27,7 +27,7 @@ class LoginRequiredCheckIsOwnerUpdateView(LoginRequiredMixin, CheckIsOwnerMixin,
 # Aplication Views
 
 # Movies Views
-class CreateMovie(CreateView):
+class CreateMovie(LoginRequiredMixin, CreateView):
     model = Movie
     template_name = 'fakefilmsweb/form.html'
     form_class = MovieForm

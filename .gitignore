@@ -7,6 +7,6 @@ venv/
 .vscode
 .DS_Store
 *.pyc
-data.json
+data.json   
 
 
