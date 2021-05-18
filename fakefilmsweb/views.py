@@ -94,8 +94,8 @@ class CreateEpisode(LoginRequiredMixin, CreateView):
         return super(CreateEpisode, self).form_valid(form)
 
 @login_required()
-def delete_episode(request, pk):
-    episode = get_object_or_404(Serie, pk=pk)
+def delete_episode(request, pkr, pk):
+    episode = get_object_or_404(Episode, pk=pk)
     if episode.user == request.user:
         episode.delete()
         return HttpResponse('<h1>Episode DELETED<h1>')
