@@ -47,6 +47,7 @@ body{
 
 .list{
     padding-left: 20px;
+    list-style: none;
 }
 
 .list-element{
@@ -54,7 +55,9 @@ body{
     padding-left: 2px;
     border-radius: 5px;
     margin-left: 20px;
+    margin-right: 40px;
     padding-right: 10px;
+    font-size: 30px;
 }
 
 .action-button{
@@ -63,11 +66,45 @@ body{
     border-radius: 5px;
     border-style: none;
     padding: 8px;
+    text-decoration: inherit;
+    width: 60px;
+    text-align:center;
 }
 
 .center{
-    margin-left:auto;
-    margin-right: auto;
-    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+
 }
+
+/**Se pueden pasar a info.css**/
+.table{
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #000;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table td{
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ddd;
+
+}
+.table tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+.interaction-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    padding: 20px;
+    column-gap:10px;
+}
+
 

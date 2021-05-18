@@ -4,18 +4,28 @@
 <link rel="stylesheet" href="{% static "style/info.css" %}" />
 {% endblock %}
 {% block content %}
-<h1>
-    {{movie.movie_name}}
-</h1>
-<div class="info-container">
-    <ul>
-        <li>{{movie.movie_category}}</li>
-        <li>{{movie.distributor}}</li>
-    </ul>
+<div class="center">
+    <h1 class="title">
+        {{movie.movie_name}}
+    </h1>
+    <div class="info-container">
+        <table class="table">
+            <tr>
+                <td><b>Categoria</b></td>
+                <td>{{movie.movie_category}}</td>
+            </tr>
+            <tr>
+                <td><b>Distribuidor</b></td>
+                <td>{{movie.distributor}}</td>
+            </tr>
+        </table>
+        <div class="interaction-container">  
+            {% if user.is_authenticated and user == movie.user %}
+                <a class="action-button"  href="{% url 'fakefilmsweb:movie_edit' movie.id %}">edit</a>
+                <a class="action-button" href="{% url 'fakefilmsweb:movie_delete' movie.id %}">remove</a>
+        </div>
+    </div>
 </div>
 
-{% if user.is_authenticated and user == movie.user %}
-    <a class="action-button" href="{% url 'fakefilmsweb:movie_edit' movie.id %}">edit</a>
-    <a class="action-button" href="{% url 'fakefilmsweb:movie_delete' movie.id %}">remove</a>
 {% endif %}
 {% endblock %}
