@@ -12,25 +12,22 @@
 </head>
 
 <body>
+
 <div id="header">
+
+<div class="menu-container">
+    {% block sidebar %}
+        <a class ="menu-text" href="/fakefilmsweb/">Home</a>
+        <a class ="menu-text" href="">My movies</a>
+        <a class ="menu-text" href="">My series</a>
+    {% endblock %}
+
     {% block header %}
         {% if user.is_authenticated %}
-            <p>User: {{ user.username }} | <a href="{% url 'logout' %}">logout</a></p>
+            <p class="login-element">User: {{ user.username }} | <a style="color: #fff;" href="{% url 'logout' %}">LOGOUT</a></p>
         {% else %}
-            <p><a href="{% url 'login' %}">login</a></p>
+            <p class=login-element><a style="color: #fff;" href="{% url 'login' %}">LOGIN</a></p>
         {% endif %}
-    {% endblock %}
-</div>
-
-<div id="sidebar">
-    {% block sidebar %}
-        <ul>
-            <li><a href="/fakefilmsweb/">Home</a></li>
-            {% if user.is_authenticated %}
-            <li><a href="">My movies</a></li>
-            <li><a href="">My serie</a></li>
-            {% endif %}
-        </ul>
     {% endblock %}
 </div>
 

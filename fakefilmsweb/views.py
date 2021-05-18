@@ -46,7 +46,7 @@ class InfoMovie(DetailView):
         return context
 
 # Series View
-class CreateSerie(CreateView):
+class CreateSerie(LoginRequiredMixin, CreateView):
     model = Serie
     template_name = 'fakefilmsweb/form.html'
     form_class = SerieForm

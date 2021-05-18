@@ -1,14 +1,21 @@
 {% extends "fakefilmsweb/base.html" %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static "style/info.css" %}" />
+{% endblock %}
 {% block content %}
 <h1>
     {{movie.movie_name}}
-    {% if user.is_authenticated and user == movie.user %}
-    (<a href="{% url 'fakefilmsweb:movie_edit' movie.id %}">edit</a>,
-     <a href="{% url 'fakefilmsweb:movie_delete' movie.id %}">remove</a>)
-    {% endif %}
 </h1>
-<ul>
-    <li>{{movie.movie_category}}</li>
-    <li>{{movie.distributor}}</li>
-</ul>
+<div class="info-container">
+    <ul>
+        <li>{{movie.movie_category}}</li>
+        <li>{{movie.distributor}}</li>
+    </ul>
+</div>
+
+{% if user.is_authenticated and user == movie.user %}
+    <a  class="action-button" href="{% url 'fakefilmsweb:movie_edit' movie.id %}">edit</a>
+    <a class="action-button" href="{% url 'fakefilmsweb:movie_delete' movie.id %}">remove</a>
+{% endif %}
 {% endblock %}

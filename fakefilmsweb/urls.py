@@ -41,10 +41,5 @@ urlpatterns = [
         ),
         name='serie_edit'
     ),
-    path('serie/list', ListView.as_view(
-        queryset=Serie.objects.all(),
-        context_object_name='serie_list',
-        template_name='fakefilmsweb/serie_list.html'
-    ), name='serie_list'),
     path('serie/<int:pk>/delete', delete_serie, name='serie_delete'),
 ]
