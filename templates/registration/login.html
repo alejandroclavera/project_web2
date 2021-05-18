@@ -1,24 +1,31 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" href="{% static "style/base.css" %}" />
+</head>
+
 {% if form.errors %}
     <p> Your username and password didn't match. Please try again.</p>
 {% endif %}
 
-<h1>Login</h1>
+<div class="center">
+    <h1 class="title">Login</h1>
+    <form method="post" action="{% url 'login' %}">
+        <table>
+            <tr>
+                <td>{{ form.username.label_tag }}</td>
+                <td>{{ form.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.password.label_tag }}</td>
+                <td>{{ form.password }}</td>
+            </tr>
+            <tr>
+                <td><input type="hidden" name="next" value="{% url 'fakefilmsweb:movie_list' %}"/></td>
+            </tr>
+        </table>
+        <input class = "action-button" style= "margin-left:210px;" type="submit" value="login" />
+        {% csrf_token %}
+        </table>
+    </form>
 
-<form method="post" action="{% url 'login' %}">
-    <table>
-        <tr>
-            <td>{{ form.username.label_tag }}</td>
-            <td>{{ form.username }}</td>
-        </tr>
-        <tr>
-            <td>{{ form.password.label_tag }}</td>
-            <td>{{ form.password }}</td>
-        </tr>
-        <tr>
-            <td><input type="hidden" name="next" value="{% url 'fakefilmsweb:movie_list' %}"/></td>
-        </tr>
-    </table>
-    <input type="submit" value="login" />
-    {% csrf_token %}
-    </table>
-</form>
+</div>

@@ -5,8 +5,8 @@ from django.core.exceptions import PermissionDenied
 from django.utils.decorators import method_decorator
 from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic import DetailView
-from fakefilmsweb.models import Movie, MovieReview, Serie, SerieReview
-from fakefilmsweb.forms import MovieForm, SerieForm
+from fakefilmsweb.models import Movie, MovieReview, Serie, SerieReview, Episode
+from fakefilmsweb.forms import MovieForm, SerieForm, EpisodeForm
 
 # Requerimets
 class LoginRequiredMixin(object):
@@ -82,3 +82,22 @@ def delete_serie(request, pk):
         return HttpResponse('<h1>Serie DELETED<h1>')
     else:
         return HttpResponse('<h1>CAN\'T DELETE Serie<h1>')
+
+class CreateEpisode(LoginRequiredMixin, CreateView):
+    model = Episode
+    template_name = 'fakefilmsweb/form.html'
+    form_class = EpisodeForm
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        form.instance.serie = Serie.objects.get(id=self.kwargs['pk'])
+        return super(CreateEpisode, self).form_valid(form)
+
+@login_required()
+def delete_episode(request, pk):
+    episode = get_object_or_404(Serie, pk=pk)
+    if episode.user == request.user:
+        episode.delete()
+        return HttpResponse('<h1>Episode DELETED<h1>')
+    else:
+        return HttpResponse('<h1>CAN\'T DELETE Episode<h1>')

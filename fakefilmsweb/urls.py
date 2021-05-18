@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from django.views.generic import DetailView, ListView
 from fakefilmsweb.models import Movie, Serie
-from fakefilmsweb.views import CreateMovie, InfoMovie, LoginRequiredCheckIsOwnerUpdateView, delete_movie, CreateSerie, InfoSerie, delete_serie
+from fakefilmsweb.views import CreateMovie, InfoMovie, LoginRequiredCheckIsOwnerUpdateView, delete_movie, CreateSerie, InfoSerie, delete_serie, CreateEpisode, delete_episode
 from fakefilmsweb.forms import MovieForm, SerieForm
 
 app_name = 'fakefilmsweb'
@@ -42,5 +42,7 @@ urlpatterns = [
         name='serie_edit'
     ),
     path('serie/<int:pk>/delete', delete_serie, name='serie_delete'),
-    #path('serie/<int:pk>/episode/')
+    #Episodes paths
+    path('serie/<int:pk>/episode/create', CreateEpisode.as_view(),name='episode_create'),
+    path('serie/<int:pkr>/episode/<int:pk>/delete', delete_episode, name='episode_delete'),
 ]

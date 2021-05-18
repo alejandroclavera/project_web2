@@ -61,6 +61,9 @@ class Episode(models.Model):
 
     def __str__(self):
         return self.name
+        
+    def get_absolute_url(self):
+        return reverse('fakefilmsweb:serie_list')
 
 # Model User Movie List
 class UsersMovieList(models.Model):

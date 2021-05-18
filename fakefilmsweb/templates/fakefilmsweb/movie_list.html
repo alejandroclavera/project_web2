@@ -1,18 +1,21 @@
 {% extends "fakefilmsweb/base.html" %}
 {% block content %}
 {% load static %}
-<h1 class="title">
-MOVIES  
+
+<div class="center">
+    <h1 class="title">
+    MOVIES  
     {% if user.is_authenticated %}  <a href="{% url 'fakefilmsweb:create_movie' %}"><img src="{% static "/images/add.jpg" %}" style="height: 30px; width: 30px;"></img></a>{% endif %}
-</h1>
-<ul class="list">
-    {% for movie in movies_list %}
-        <li class="list-element">
-            <a href="{% url 'fakefilmsweb:info_movie' movie.id %}">
-                {{ movie.movie_name }}
-            </a>
-    </li>
-    {% empty %}<li>Sorry, no movies registered yet.</li>
-    {% endfor %}
-</ul>
+    </h1>
+    <ul class="list">
+        {% for movie in movies_list %}
+            <li class="list-element">
+                <a href="{% url 'fakefilmsweb:info_movie' movie.id %}">
+                    {{ movie.movie_name }}
+                </a>
+        </li>
+        {% empty %}<li>Sorry, no movies registered yet.</li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}

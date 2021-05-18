@@ -4,13 +4,17 @@
 <script src="{% static "js/autocompleteMovies.js" %}"></script>
 {% endblock %}
 {% block content %}
-    <form style="padding: 20px;"method="post" enctype="multipart/form-data" action="">
+    <div class="center">
+        <h1 class="title">New Movie</h1>
+      <form style="padding: 20px;"method="post" enctype="multipart/form-data" action="">
         {% csrf_token %}
         <table>
             {{ form.as_table }}
         </table>
         <input class="action-button" style=" margin-top: 20px;
         margin-left: 235px;" type="submit" value="Submit"/>
-    </form>
+    </form>  
+    </div>
+    
 
 {% endblock %}
