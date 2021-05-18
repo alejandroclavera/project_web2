@@ -42,4 +42,5 @@ urlpatterns = [
         name='serie_edit'
     ),
     path('serie/<int:pk>/delete', delete_serie, name='serie_delete'),
+    #path('serie/<int:pk>/episode/')
 ]
