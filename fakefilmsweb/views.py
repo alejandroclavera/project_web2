@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.utils import timezone
 from django.contrib.auth.decorators import login_required
@@ -78,18 +78,18 @@ def delete_movie(request, pk):
     movie = get_object_or_404(Movie, pk=pk)
     if movie.user == request.user:
         movie.delete()
-        return HttpResponse('<h1>MOVIE DELETED<h1>')
+        return info_status(request, 'MOVIE DELETED')
     else:
-        return HttpResponse('<h1>CAN\'T DELETE MOVIE<h1>')
+        return info_status(request, 'CAN\'T DELETE MOVIE')
 
 @login_required()
 def delete_serie(request, pk):
     serie = get_object_or_404(Serie, pk=pk)
     if serie.user == request.user:
         serie.delete()
-        return HttpResponse('<h1>Serie DELETED<h1>')
+        return info_status(request, 'SERIE DELETED')
     else:
-        return HttpResponse('<h1>CAN\'T DELETE Serie<h1>')
+        return info_status(request, 'CAN\'T DELETE SERIE')
 
 class CreateEpisode(LoginRequiredMixin, CreateView):
     model = Episode
@@ -127,9 +127,9 @@ def delete_episode(request, pkr, pk):
     episode = get_object_or_404(Episode, pk=pk)
     if episode.user == request.user:
         episode.delete()
-        return HttpResponse('<h1>Episode DELETED<h1>')
+        return info_status(request, 'EPISODE DELETED')
     else:
-        return HttpResponse('<h1>CAN\'T DELETE Episode<h1>')
+        return info_status(request, 'CAN\'T DELETE Episode')
 
 @login_required()
 def add_movie_to_list(request, pk_user, pk_movie):
@@ -139,7 +139,7 @@ def add_movie_to_list(request, pk_user, pk_movie):
     user = get_object_or_404(User, pk=pk_user)
     movie = get_object_or_404(Movie, pk=pk_movie)
     if not UsersMovieList.objects.filter(user=user, movie=movie).exists():
-        UsersMovieList.objects.create(user=user, movie=movie, date=timezone.now())
+        movie = UsersMovieList.objects.create(user=user, movie=movie, date=timezone.now())
         return info_status(request, 'MOVIE ADDED')
     else:
         return info_status(request, 'MOVIE IS ALREADY ADDED')

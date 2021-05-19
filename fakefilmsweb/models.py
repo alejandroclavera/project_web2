@@ -54,6 +54,9 @@ class UsersMovieList(models.Model):
     class Meta:
         unique_together = ('user', 'movie')
 
+    def get_absolute_url(self):
+        return reverse('fakefilmsweb:serie_list')
+
     def __str__(self):
         return str(self.user) + ',' + str(self.movie)
 
