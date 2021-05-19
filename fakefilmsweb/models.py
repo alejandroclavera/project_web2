@@ -3,18 +3,11 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from datetime import date
 
-# Model Distributor
-class Distributor(models.Model):
-    distributor_name = models.CharField(max_length=30)
-
-    def __str__(self):
-        return self.distributor_name
-
 # Model Movie
 class Movie(models.Model):
     movie_name= models.CharField(max_length=30)
     movie_category= models.CharField(max_length=50)
-    distributor = models.ForeignKey(Distributor, on_delete=models.CASCADE)
+    director = models.CharField(max_length=30)
     user = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
 
     def __str__(self):

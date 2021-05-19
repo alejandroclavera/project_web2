@@ -1,11 +1,12 @@
 {% extends "fakefilmsweb/base.html" %}
 {% load static %}
+{}
 {% block head %}
 <script src="{% static "js/autocompleteMovies.js" %}"></script>
 {% endblock %}
 {% block content %}
     <div class="center">
-        <h1 class="title">Creando</h1>
+        <h1 class="title">{{ TITLE }}</h1>
       <form style="padding: 20px;"method="post" enctype="multipart/form-data" action="">
         {% csrf_token %}
         <table>

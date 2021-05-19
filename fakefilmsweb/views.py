@@ -24,6 +24,11 @@ class CheckIsOwnerMixin(object):
 class LoginRequiredCheckIsOwnerUpdateView(LoginRequiredMixin, CheckIsOwnerMixin, UpdateView):
     template_name = 'fakefilmsweb/form.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(LoginRequiredCheckIsOwnerUpdateView, self).get_context_data(**kwargs)
+        context['TITLE'] = 'EDIT'
+        return context
+
 # Aplication Views
 
 # Movies Views
@@ -35,6 +40,11 @@ class CreateMovie(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(CreateMovie, self).form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        context = super(CreateMovie, self).get_context_data(**kwargs)
+        context['TITLE'] = 'CREATE MOVIE'
+        return context
 
 class InfoMovie(DetailView):
     model = Movie
@@ -54,6 +64,11 @@ class CreateSerie(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(CreateSerie, self).form_valid(form)
+    
+    def get_context_data(self, **kwargs):
+        context = super(CreateSerie, self).get_context_data(**kwargs)
+        context['TITLE'] = 'CREATE SERIE'
+        return context
 
 class InfoSerie(DetailView):
     model = Serie
@@ -92,6 +107,11 @@ class CreateEpisode(LoginRequiredMixin, CreateView):
         form.instance.user = self.request.user
         form.instance.serie = Serie.objects.get(id=self.kwargs['pk'])
         return super(CreateEpisode, self).form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super(CreateEpisode, self).get_context_data(**kwargs)
+        context['TITLE'] = 'NEW EPISODE'
+        return context
 
 @login_required()
 def delete_episode(request, pkr, pk):

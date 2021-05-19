@@ -9,9 +9,10 @@
 </h1>
 <ul>
     <li>{{serie.category}}</li>
-    <li>{{movie.distributor}}</li>
+    <li>{{serie.distributor}}</li>
 </ul>
 {% if user.is_authenticated and user == serie.user %}
+    <a class="action-button" href="{% url 'fakefilmsweb:episode_create' serie.id %}">add episode</a>
     <a class="action-button" href="{% url 'fakefilmsweb:serie_edit' serie.id %}">edit</a>
     <a class="action-button" href="{% url 'fakefilmsweb:serie_delete' serie.id %}">remove</a>
     {% endif %}

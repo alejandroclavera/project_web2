@@ -14,4 +14,4 @@ class SerieForm(ModelForm):
 class EpisodeForm(ModelForm):
     class Meta:
         model = Episode
-        exclude = ('user','date')
+        exclude = ('serie','user','date')
