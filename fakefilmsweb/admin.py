@@ -7,5 +7,4 @@ admin.site.register(Serie)
 admin.site.register(Episode)
 admin.site.register(UsersMovieList)
 admin.site.register(UsersSerieList)
-admin.site.register(MovieReview)
-admin.site.register(SerieReview)
+

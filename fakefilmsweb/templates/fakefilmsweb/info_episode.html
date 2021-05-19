@@ -6,21 +6,21 @@
 {% block content %}
 <div class="center">
     <h1 class="title">
-        {{movie.movie_name}}
+        {{episode.name}}
     </h1>
     <div class="info-container">
         <table class="table">
             <tr>
-                <td><b>Director</b></td>
-                <td>{{movie.director}}</td>
+                <td><b>Serie</b></td>
+                <td>{{episode.serie.serie_name}}</td>
             </tr>
             <tr>
-                <td><b>Categoria</b></td>
-                <td>{{movie.movie_category}}</td>
+                <td><b>Season</b></td>
+                <td>{{episode.season}}</td>
             </tr>
             <tr>
-                <td><b>Year</b></td>
-                <td>{{movie.year}}</td>
+                <td><b>Number</b></td>
+                <td>{{episode.number}}</td>
             </tr>
         </table>
         <div class="interaction-container">  

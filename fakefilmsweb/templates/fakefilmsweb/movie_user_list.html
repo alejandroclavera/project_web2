@@ -1,0 +1,23 @@
+{% extends "fakefilmsweb/base.html" %}
+{% block content %}
+{% load static %}
+
+<div class="center">
+    <h1 class="title">
+    MY MOVIES
+    </h1>
+    <ul class="list">
+        {% for movie in movies_list %}
+        {% if movie.user == user %}
+        <li class="list-element">
+            <a href="{% url 'fakefilmsweb:info_movie' movie.movie.id %}">
+            {{ movie.movie.movie_name }}
+            </a>
+            <a href="{% url 'fakefilmsweb:movie_list_delete' user.id movie.movie.id %}">-</a>
+        </li>
+        {% endif %}
+        {% empty %}<li>Sorry, no movies registered yet.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

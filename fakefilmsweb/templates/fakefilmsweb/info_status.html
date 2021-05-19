@@ -1,0 +1,6 @@
+{% extends "fakefilmsweb/base.html" %}
+{% load static %}
+{% block content %}
+<h1>{{message}}</h1>
+<a href="{% url 'fakefilmsweb:movie_list' %}">return</a>
+{% endblock %}

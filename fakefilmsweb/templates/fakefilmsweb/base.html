@@ -19,8 +19,13 @@
     {% block sidebar %}
         <a class ="menu-text" href="/fakefilmsweb/">Home</a>
         <a class ="menu-text" href="/fakefilmsweb/serie/list">Series</a>
-        <a class ="menu-text" href="/fakefilmsweb/">My movies</a>
-        <a class ="menu-text" href="/fakefilmsweb/serie/list">My series</a>
+        {% if user.is_authenticated %}
+        <a class ="menu-text" href="{% url 'fakefilmsweb:movie_user_list' user.id %}">My movies</a>
+        <a class ="menu-text" href="{% url 'fakefilmsweb:serie_user_list' user.id %}">My series</a>
+        {% else %}
+        <div></div>
+        <div></div>
+        {% endif %}
     {% endblock %}
 
     {% block header %}

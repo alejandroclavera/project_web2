@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.urls import path
 from django.views.generic import DetailView, ListView
-from fakefilmsweb.models import Movie, Serie
-from fakefilmsweb.views import CreateMovie, InfoMovie, LoginRequiredCheckIsOwnerUpdateView, delete_movie, CreateSerie, InfoSerie, delete_serie, CreateEpisode, delete_episode
+from fakefilmsweb.models import *
+from fakefilmsweb.views import *
 from fakefilmsweb.forms import MovieForm, SerieForm
 
 app_name = 'fakefilmsweb'
@@ -42,7 +42,30 @@ urlpatterns = [
         name='serie_edit'
     ),
     path('serie/<int:pk>/delete', delete_serie, name='serie_delete'),
+
     #Episodes paths
+    path('serie/<int:pk>/episodes', episode_list, name='episode_list'),
     path('serie/<int:pk>/episode/create', CreateEpisode.as_view(),name='episode_create'),
+    path('serie/<int:pk_serie>/episode/<int:pk_episode>', episode_info, name='info_episode'),
     path('serie/<int:pkr>/episode/<int:pk>/delete', delete_episode, name='episode_delete'),
+
+    # Movie user List paths
+    path('user/<int:pk>/movies', ListView.as_view(
+        queryset=UsersMovieList.objects.all(),
+        context_object_name='movies_list',
+        template_name='fakefilmsweb/movie_user_list.html'
+    ), name='movie_user_list'),
+
+    path('user/<int:pk_user>/movie/<int:pk_movie>/add', add_movie_to_list, name='movie_list_add'),
+    path('user/<int:pk_user>/movie/<int:pk_movie>/delete', remove_movie_to_list, name='movie_list_delete'),
+
+    # serie user List paths
+    path('user/<int:pk>/series', ListView.as_view(
+        queryset=UsersSerieList.objects.all(),
+        context_object_name='serie_list',
+        template_name='fakefilmsweb/serie_user_list.html'
+    ), name='serie_user_list'),
+
+    path('user/<int:pk_user>/serie/<int:pk_serie>/add', add_serie_to_list, name='serie_list_add'),
+    path('user/<int:pk_user>/serie/<int:pk_serie>/delete', remove_serie_to_list, name='serie_list_delete'),
 ]

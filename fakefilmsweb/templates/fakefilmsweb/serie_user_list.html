@@ -3,18 +3,18 @@
 {% block content %}
 <div class="center">
     <h1 class="title">
-        SERIES
+        MY SERIES
         {% if user.is_authenticated %}<a href="{% url 'fakefilmsweb:create_serie' %}"><img src="{% static "/images/add.jpg" %}" style="height: 30px; width: 30px;"></img></a>{% endif %}
     </h1>
     <ul class="list">
         {% for serie in serie_list %}
-        <li class="list-element"><a href="{% url 'fakefilmsweb:info_serie' serie.id %}">
-            {{ serie.serie_name }}</a>
-            {% if user.is_authenticated %}
-            <a href="{% url 'fakefilmsweb:serie_list_add' user.id serie.id %}">+</a>
-            {% endif %}
-        </li>
-        {% empty %}<li>Sorry, no Serie registered yet.</li>
+        {% if serie.user == user %}
+            <li class="list-element"><a href="{% url 'fakefilmsweb:info_serie' serie.id %}">
+                {{ serie.serie.serie_name }}</a>
+                <a href="{% url 'fakefilmsweb:serie_list_delete' user.id serie.serie.id %}">-</a>
+            </li>
+        {% endif %}
+        {% empty %}<li>Sorry, no series registered yet.</li>
         {% endfor %}
     </ul>
 </div>
