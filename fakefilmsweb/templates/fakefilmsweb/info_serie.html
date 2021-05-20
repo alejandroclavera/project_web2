@@ -11,10 +11,18 @@
     <li>{{serie.category}}</li>
     <li>{{serie.year}}</li>
 </ul>
-<a class="action-button" href="{% url 'fakefilmsweb:episode_list' serie.id  %}">view episodes</a>
 {% if user.is_authenticated and user == serie.user %}
     <a class="action-button" href="{% url 'fakefilmsweb:episode_create' serie.id %}">add episode</a>
     <a class="action-button" href="{% url 'fakefilmsweb:serie_edit' serie.id %}">edit</a>
     <a class="action-button" href="{% url 'fakefilmsweb:serie_delete' serie.id %}">remove</a>
-    {% endif %}
+{% endif %}
+<h2>EPISODE LIST</h2>
+<div class="episodes_list">
+{% for episode in serie.episodes.all %}
+    <li><a href="{% url 'fakefilmsweb:info_episode' serie.id episode.id %}">{{episode.name}}</a></li>
+{% endfor %}
+    {% if user.is_authenticated and user == serie.user %}
+{% endif %}
+</div>
+    <div style="margin-top:20px"><a class="action-button" href="{% url 'fakefilmsweb:episode_create' serie.id %}">add episode</a></div>
 {% endblock %}

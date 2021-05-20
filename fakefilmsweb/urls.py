@@ -38,15 +38,21 @@ urlpatterns = [
         LoginRequiredCheckIsOwnerUpdateView.as_view(
             model = Serie,
             form_class = SerieForm
-        ),
-        name='serie_edit'
-    ),
+        ), name='serie_edit'),
     path('serie/<int:pk>/delete', delete_serie, name='serie_delete'),
 
     #Episodes paths
-    path('serie/<int:pk>/episodes', episode_list, name='episode_list'),
-    path('serie/<int:pk>/episode/create', CreateEpisode.as_view(),name='episode_create'),
-    path('serie/<int:pk_serie>/episode/<int:pk_episode>', episode_info, name='info_episode'),
+    path('serie/<int:pk>/episode/create', CreateEpisode.as_view(), name='episode_create'),
+    path('serie/<int:pks>/episode/<int:pk>', DetailView.as_view(
+        model=Episode,
+        template_name='fakefilmsweb/info_episode.html'
+    ), name='info_episode'),
+    path('serie/<int:pks>/episode/<int:pk>/edit',
+         LoginRequiredCheckIsOwnerUpdateView.as_view(
+            model=Episode,
+            form_class=EpisodeForm),
+         name='episode_edit'),
+
     path('serie/<int:pkr>/episode/<int:pk>/delete', delete_episode, name='episode_delete'),
 
     # Movie user List paths

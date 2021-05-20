@@ -127,7 +127,7 @@ def delete_episode(request, pkr, pk):
     episode = get_object_or_404(Episode, pk=pk)
     if episode.user == request.user:
         episode.delete()
-        return info_status(request, 'EPISODE DELETED')
+        return info_status(request, 'EPISODE DELETED', next_url='fakefilmsweb:serie_list')
     else:
         return info_status(request, 'CAN\'T DELETE Episode')
 
@@ -183,7 +183,10 @@ def remove_serie_to_list(request, pk_user, pk_serie):
     else:
         return info_status(request, 'SERIE NOT FOUND')
 
-def info_status(request, message):
+def info_status(request, message, next_url=None):
     template = loader.get_template('fakefilmsweb/info_status.html')
-    document = template.render({'message':message, 'user':request.user})
+    if next_url is None:
+        next_url = 'fakefilmsweb:movie_list'
+    document = template.render({'message':message, 'user':request.user, 'next':reverse(next_url),})
     return HttpResponse(document)
+

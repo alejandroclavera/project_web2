@@ -33,7 +33,7 @@ class Serie(models.Model):
 
 # Model Episode
 class Episode(models.Model):
-    serie = models.ForeignKey(Serie,on_delete=models.CASCADE)
+    serie = models.ForeignKey(Serie, related_name='episodes', on_delete=models.CASCADE)
     season = models.CharField(max_length=30)
     number = models.IntegerField()
     name = models.CharField(max_length=30)
@@ -43,7 +43,7 @@ class Episode(models.Model):
         return self.name
         
     def get_absolute_url(self):
-        return reverse('fakefilmsweb:serie_list')
+        return reverse('fakefilmsweb:info_episode', kwargs={'pks':self.serie.pk, 'pk': self.pk})
 
 # Model User Movie List
 class UsersMovieList(models.Model):
@@ -68,6 +68,9 @@ class UsersSerieList(models.Model):
 
     class Meta:
         unique_together = ('user', 'serie')
+
+    def get_absolute_url(self):
+        return reverse('fakefilmsweb:serie_list')
     
     def __str__(self):
         return str(self.user) + ',' + str(self.serie)
