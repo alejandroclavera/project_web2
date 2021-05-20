@@ -10,10 +10,10 @@
         {% for movie in movies_list %}
         {% if movie.user == user %}
         <li class="list-element">
-            <a href="{% url 'fakefilmsweb:info_movie' movie.movie.id %}">
+            <a class="link-list" href="{% url 'fakefilmsweb:info_movie' movie.movie.id %}">
             {{ movie.movie.movie_name }}
             </a>
-            <a href="{% url 'fakefilmsweb:movie_list_delete' user.id movie.movie.id %}">-</a>
+            <a id="menos" href="{% url 'fakefilmsweb:movie_list_delete' user.id movie.movie.id %}"><img src="{% static "/images/minus.png" %}" style="height: 30px; width: 30px; margin-top: 3px;"></a>
         </li>
         {% endif %}
         {% empty %}<li class="no-elements-msg">You haven't registered any movie</li>

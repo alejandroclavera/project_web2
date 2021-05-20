@@ -124,7 +124,7 @@ def user_movie_list(request,pk):
     user = get_object_or_404(User, pk=pk)
     movies = UsersMovieList.objects.filter(user=user).all()
     template = loader.get_template('fakefilmsweb/movie_user_list.html')
-    document = template.render({'movie_list': movies, 'user': request.user})
+    document = template.render({'movies_list': movies, 'user': request.user})
     return HttpResponse(document)
 
 @login_required()

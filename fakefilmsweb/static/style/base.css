@@ -68,13 +68,21 @@ body{
 .list-element{
     margin-bottom: 15px;
     padding-left: 2px;
-    border-radius: 5px;
     margin-left: 20px;
-    margin-right: 40px;
     padding-right: 10px;
     font-size: 30px;
     display: grid; 
     grid-template-columns: 4fr 1fr;
+    column-gap: 15px;
+}
+
+.link-list{
+    text-decoration: none;
+    color: #040996;
+}
+
+.link-list:hover{
+    text-decoration: underline;
 }
 
 
