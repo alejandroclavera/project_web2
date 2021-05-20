@@ -4,7 +4,6 @@
 <div class="center">
     <h1 class="title">
         MY SERIES
-        {% if user.is_authenticated %}<a href="{% url 'fakefilmsweb:create_serie' %}"><img src="{% static "/images/add.jpg" %}" style="height: 30px; width: 30px;"></img></a>{% endif %}
     </h1>
     <ul class="list">
         {% for user_serie in serie_list %}
@@ -14,9 +13,11 @@
                 <a href="{% url 'fakefilmsweb:serie_list_delete' user.id user_serie.serie.id %}">-</a>
             </li>
         {% endif %}
-        {% empty %}<li>Sorry, no series registered yet.</li>
-        {% endfor %}
     </ul>
+        {% empty %}
+        <li class="no-elements-msg">You haven't registered any serie</li>
+        {% endfor %}
+    
 </div>
 
 {% endblock %}

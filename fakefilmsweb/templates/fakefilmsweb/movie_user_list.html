@@ -16,7 +16,7 @@
             <a href="{% url 'fakefilmsweb:movie_list_delete' user.id movie.movie.id %}">-</a>
         </li>
         {% endif %}
-        {% empty %}<li>Sorry, no movies registered yet.</li>
+        {% empty %}<li class="no-elements-msg">You haven't registered any movie</li>
         {% endfor %}
     </ul>
 </div>

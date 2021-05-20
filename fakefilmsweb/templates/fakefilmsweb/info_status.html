@@ -1,6 +1,9 @@
 {% extends "fakefilmsweb/base.html" %}
 {% load static %}
 {% block content %}
-<h1>{{message}}</h1>
-<a href="{{next}}">return</a>
+<div class="center">
+    <h1 class="title status-title ">{{message}}</h1>
+    <a class="action-button status-action-button" href="{% url 'fakefilmsweb:movie_list' %}">return</a>
+</div>
+
 {% endblock %}

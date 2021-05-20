@@ -4,25 +4,40 @@
 <link rel="stylesheet" href="{% static "style/info.css" %}" />
 {% endblock %}
 {% block content %}
-<h1>
-    {{serie.serie_name}}
-</h1>
-<ul>
-    <li>{{serie.category}}</li>
-    <li>{{serie.year}}</li>
-</ul>
-{% if user.is_authenticated and user == serie.user %}
-    <a class="action-button" href="{% url 'fakefilmsweb:episode_create' serie.id %}">add episode</a>
-    <a class="action-button" href="{% url 'fakefilmsweb:serie_edit' serie.id %}">edit</a>
-    <a class="action-button" href="{% url 'fakefilmsweb:serie_delete' serie.id %}">remove</a>
-{% endif %}
-<h2>EPISODE LIST</h2>
-<div class="episodes_list">
-{% for episode in serie.episodes.all %}
-    <li><a href="{% url 'fakefilmsweb:info_episode' serie.id episode.id %}">{{episode.name}}</a></li>
-{% endfor %}
-</div>
-{% if user.is_authenticated and user == serie.user %}
-    <div style="margin-top:20px"><a class="action-button" href="{% url 'fakefilmsweb:episode_create' serie.id %}">add episode</a></div>
-{% endif %}
+<div class="center">
+    <h1 class="title">
+        {{serie.serie_name}}q
+    </h1>
+    <div class="info-container">
+        <table class="table">
+            <tr>
+                <td><b>Categoria</b></td>
+                <td>{{serie.category}}</td>
+            </tr>
+            <tr>
+                <td><b>Año</b></td>
+                <td>{{serie.year}}</td>
+            </tr>
+        </table>
+        <div class="interaction-container">  
+            {% if user.is_authenticated and user == serie.user %}
+                <a class="action-button" href="{% url 'fakefilmsweb:serie_edit' serie.id %}">edit</a>
+                <a class="action-button" href="{% url 'fakefilmsweb:serie_delete' serie.id %}">remove</a>    
+            {% endif %}
+        </div>
+    </div>    
+
+    <h2 class="subtitle">EPISODES LIST</h2>
+        <ul class="episode-list">
+            {% for episode in serie.episodes.all %}
+                <li class="episode-box"><a class="episode-element" href="{% url 'fakefilmsweb:info_episode' serie.id episode.id %}">{{episode.name}}</a></li>
+            {% empty %}
+                </ul> 
+                <p class="no-elements-msg">There aren't any apisodes yet</p> 
+            {% endfor %}
+            </ul>
+        
+    {% if user.is_authenticated and user == serie.user %}
+        <div style="margin-top:20px"><a class="action-button" href="{% url 'fakefilmsweb:episode_create' serie.id %}">add episode</a></div>
+    {% endif %}
 {% endblock %}

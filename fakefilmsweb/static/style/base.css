@@ -19,10 +19,6 @@ body{
     margin: 0px;
     padding-top: 15px;
     text-align: center;
-    
-    /*border: 1px solid black;
-    border-top-width: 0px;
-    border-bottom-width: 0px;*/
 }
 
 .menu-text:hover{
@@ -43,6 +39,25 @@ body{
     font-size: 100px;
     margin-top: 30px;
     margin-bottom: 20px;
+}
+
+.subtitle{
+    padding: 10px;
+    color:#040996;
+    font-size: 30px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.status-title{
+    color: #0077E7;
+    font-size: 60px;
+}
+
+.error-msg{
+    font-size: 25px;
+    color: #c14743;
+    margin: 30px;
 }
 
 .list{
@@ -71,6 +86,10 @@ body{
     text-align:center;
 }
 
+.status-action-button{
+    background-color: #0077E7;
+}
+
 .center{
     display: flex;
     flex-direction: column;
@@ -80,6 +99,39 @@ body{
 
 }
 
+.episode-list{
+    min-width: 200px;
+    background-color: #f2f2f2;
+    display: grid;
+    grid-template-columns: 1fr;
+    list-style:none;
+    padding-inline-start: 0px;
+    border: 1px solid #ddd;
+    border-bottom-style: none;
+}
+.episode-list li:nth-child(even){
+    background-color: #fff;
+}
+
+.episode-box{
+    border-bottom: 1px solid #ddd;
+    padding: 5px;
+    text-align: center;
+}
+
+.episode-element{
+    color: #000;
+    font-size: 15px;
+    margin-bottom: 6px; 
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.no-elements-msg{
+    color: #0077E7;
+    font-size: 30px;
+}
 /**Se pueden pasar a info.css**/
 .table{
     margin: 10px;
