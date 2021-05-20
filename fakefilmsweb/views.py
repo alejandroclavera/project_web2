@@ -127,7 +127,7 @@ def delete_episode(request, pkr, pk):
     episode = get_object_or_404(Episode, pk=pk)
     if episode.user == request.user:
         episode.delete()
-        return info_status(request, 'EPISODE DELETED', next_url='fakefilmsweb:serie_list')
+        return info_status(request, 'EPISODE DELETED', next_url=reverse('fakefilmsweb:serie_list'))
     else:
         return info_status(request, 'CAN\'T DELETE Episode')
 
@@ -139,8 +139,8 @@ def add_movie_to_list(request, pk_user, pk_movie):
     user = get_object_or_404(User, pk=pk_user)
     movie = get_object_or_404(Movie, pk=pk_movie)
     if not UsersMovieList.objects.filter(user=user, movie=movie).exists():
-        movie = UsersMovieList.objects.create(user=user, movie=movie, date=timezone.now())
-        return info_status(request, 'MOVIE ADDED')
+        user_movie = UsersMovieList.objects.create(user=user, movie=movie, date=timezone.now())
+        return HttpResponseRedirect(user_movie.get_absolute_url())
     else:
         return info_status(request, 'MOVIE IS ALREADY ADDED')
 
@@ -152,8 +152,9 @@ def remove_movie_to_list(request, pk_user, pk_movie):
     user = get_object_or_404(User, pk=pk_user)
     movie = get_object_or_404(Movie, pk=pk_movie)
     if UsersMovieList.objects.filter(user=user, movie=movie).exists():
-        UsersMovieList.objects.get(user=user, movie=movie).delete()
-        return info_status(request, 'MOVIE REMOVED')
+        user_movie = UsersMovieList.objects.get(user=user, movie=movie)
+        user_movie.delete()
+        return HttpResponseRedirect(user_movie.get_absolute_url())
     else:
        return info_status(request, 'MOVIE NOT FOUND')
 
@@ -165,8 +166,8 @@ def add_serie_to_list(request, pk_user, pk_serie):
     user = get_object_or_404(User, pk=pk_user)
     serie = get_object_or_404(Serie, pk=pk_serie)
     if not UsersSerieList.objects.filter(user=user, serie=serie).exists():
-        UsersSerieList.objects.create(user=user, serie=serie, date=timezone.now())
-        return info_status(request, 'SERIE ADDED')
+        user_serie = UsersSerieList.objects.create(user=user, serie=serie, date=timezone.now())
+        return HttpResponseRedirect(user_serie.get_absolute_url())
     else:
         return info_status(request, 'SERIE IS ALREADY ADDED')
 
@@ -178,15 +179,16 @@ def remove_serie_to_list(request, pk_user, pk_serie):
     user = get_object_or_404(User, pk=pk_user)
     serie = get_object_or_404(Serie, pk=pk_serie)
     if UsersSerieList.objects.filter(user=user, serie=serie).exists():
-        UsersSerieList.objects.get(user=user, serie=serie).delete()
-        return info_status(request, 'SERIE REMOVED')
+        user_serie = UsersSerieList.objects.get(user=user, serie=serie)
+        user_serie.delete()
+        return HttpResponseRedirect(user_serie.get_absolute_url())
     else:
         return info_status(request, 'SERIE NOT FOUND')
 
 def info_status(request, message, next_url=None):
     template = loader.get_template('fakefilmsweb/info_status.html')
     if next_url is None:
-        next_url = 'fakefilmsweb:movie_list'
-    document = template.render({'message':message, 'user':request.user, 'next':reverse(next_url),})
+        next_url = reverse('fakefilmsweb:movie_list')
+    document = template.render({'message':message, 'user':request.user, 'next':next_url})
     return HttpResponse(document)
 

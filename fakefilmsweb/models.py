@@ -55,7 +55,7 @@ class UsersMovieList(models.Model):
         unique_together = ('user', 'movie')
 
     def get_absolute_url(self):
-        return reverse('fakefilmsweb:serie_list')
+        return reverse('fakefilmsweb:movie_user_list', kwargs={'pk': self.user.pk})
 
     def __str__(self):
         return str(self.user) + ',' + str(self.movie)
@@ -70,7 +70,7 @@ class UsersSerieList(models.Model):
         unique_together = ('user', 'serie')
 
     def get_absolute_url(self):
-        return reverse('fakefilmsweb:serie_list')
+        return reverse('fakefilmsweb:serie_user_list', kwargs={'pk': self.user.pk})
     
     def __str__(self):
         return str(self.user) + ',' + str(self.serie)

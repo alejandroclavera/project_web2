@@ -14,7 +14,6 @@ urlpatterns = [
         context_object_name='movies_list',
         template_name='fakefilmsweb/movie_list.html'
     ), name='movie_list'),
-
     path('movie/create', CreateMovie.as_view(), name='create_movie'),
     path('movie/<int:pk>', InfoMovie.as_view(), name='info_movie'),
     path('movie/<int:pk>/edit', 

@@ -21,8 +21,8 @@
 {% for episode in serie.episodes.all %}
     <li><a href="{% url 'fakefilmsweb:info_episode' serie.id episode.id %}">{{episode.name}}</a></li>
 {% endfor %}
-    {% if user.is_authenticated and user == serie.user %}
-{% endif %}
 </div>
+{% if user.is_authenticated and user == serie.user %}
     <div style="margin-top:20px"><a class="action-button" href="{% url 'fakefilmsweb:episode_create' serie.id %}">add episode</a></div>
+{% endif %}
 {% endblock %}
