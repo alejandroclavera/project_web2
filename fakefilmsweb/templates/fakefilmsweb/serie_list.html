@@ -14,7 +14,7 @@
             <a href="{% url 'fakefilmsweb:serie_list_add' user.id serie.id %}">+</a>
             {% endif %}
         </li>
-        {% empty %}<li>Sorry, no Serie registered yet.</li>
+        {% empty %}<li class="no-elements-msg">Sorry, no series registered yet.</li>
         {% endfor %}
     </ul>
 </div>

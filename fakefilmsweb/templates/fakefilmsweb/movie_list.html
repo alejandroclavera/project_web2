@@ -17,7 +17,7 @@
                 <a href="{% url 'fakefilmsweb:movie_list_add' user.id movie.id %}">+</a>
                 {% endif %}
         </li>
-        {% empty %}<li>Sorry, no movies registered yet.</li>
+        {% empty %}<li class="no-elements-msg">Sorry, no movies registered yet.</li>
         {% endfor %}
     </ul>
 </div>
