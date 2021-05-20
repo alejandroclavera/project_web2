@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.urls import reverse
 from datetime import date
 
+
 # Model Movie
 class Movie(models.Model):
     movie_name= models.CharField(max_length=30)
@@ -17,12 +18,13 @@ class Movie(models.Model):
     def get_absolute_url(self):
         return reverse('fakefilmsweb:movie_list')
 
+
 # Model Serie
 class Serie(models.Model):
     serie_name = models.CharField(max_length=30)
     category = models.CharField(max_length=30)
     year = models.CharField(max_length=30)
-    number_of_seasons = models.IntegerField(default=1)
+    number_of_seasons = models.PositiveIntegerField(default=1)
     user = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -31,11 +33,12 @@ class Serie(models.Model):
     def get_absolute_url(self):
         return reverse('fakefilmsweb:serie_list')
 
+
 # Model Episode
 class Episode(models.Model):
     serie = models.ForeignKey(Serie, related_name='episodes', on_delete=models.CASCADE)
     season = models.CharField(max_length=30)
-    number = models.IntegerField()
+    number = models.PositiveIntegerField(default=1)
     name = models.CharField(max_length=30)
     user = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
 
@@ -44,6 +47,7 @@ class Episode(models.Model):
         
     def get_absolute_url(self):
         return reverse('fakefilmsweb:info_episode', kwargs={'pks':self.serie.pk, 'pk': self.pk})
+
 
 # Model User Movie List
 class UsersMovieList(models.Model):
@@ -59,6 +63,7 @@ class UsersMovieList(models.Model):
 
     def __str__(self):
         return str(self.user) + ',' + str(self.movie)
+
 
 # Model User Serie List
 class UsersSerieList(models.Model):
