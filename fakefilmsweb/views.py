@@ -44,7 +44,7 @@ class CreateMovie(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(CreateMovie, self).form_valid(form)
-    
+
     def get_context_data(self, **kwargs):
         context = super(CreateMovie, self).get_context_data(**kwargs)
         context['TITLE'] = 'CREATE MOVIE'
@@ -63,7 +63,7 @@ class CreateSerie(LoginRequiredMixin, CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super(CreateSerie, self).form_valid(form)
-    
+
     def get_context_data(self, **kwargs):
         context = super(CreateSerie, self).get_context_data(**kwargs)
         context['TITLE'] = 'CREATE SERIE'
@@ -80,7 +80,7 @@ def delete_movie(request, pk):
         movie.delete()
         return info_status(request, 'MOVIE DELETED')
     else:
-        return info_status(request, 'CAN\'T DELETE MOVIE')
+        return info_status(request, 'CAN\'T DELETE MOVIE', next_url=reverse('fakefilmsweb:movie_list'))
 
 @login_required()
 def delete_serie(request, pk):
@@ -89,7 +89,7 @@ def delete_serie(request, pk):
         serie.delete()
         return info_status(request, 'SERIE DELETED')
     else:
-        return info_status(request, 'CAN\'T DELETE SERIE')
+        return info_status(request, 'CAN\'T DELETE SERIE', next_url=reverse('fakefilmsweb:serie_list'))
 
 class CreateEpisode(LoginRequiredMixin, CreateView):
     model = Episode
@@ -130,6 +130,15 @@ def delete_episode(request, pkr, pk):
         return info_status(request, 'EPISODE DELETED', next_url=reverse('fakefilmsweb:serie_list'))
     else:
         return info_status(request, 'CAN\'T DELETE Episode')
+
+def user_movie_list(request,pk):
+    if request.user.id != pk:
+        return info_status(request, 'NOT PERMITED USER')
+    user = get_object_or_404(User, pk=pk)
+    movies = UsersMovieList.objects.filter(user=user).all()
+    template = loader.get_template('fakefilmsweb/episode_list.html')
+    document = template.render({'movie_list': movies, 'user': request.user})
+    return HttpResponse(document)
 
 @login_required()
 def add_movie_to_list(request, pk_user, pk_movie):
@@ -191,4 +200,3 @@ def info_status(request, message, next_url=None):
         next_url = reverse('fakefilmsweb:movie_list')
     document = template.render({'message':message, 'user':request.user, 'next':next_url})
     return HttpResponse(document)
-
