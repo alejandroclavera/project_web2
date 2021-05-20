@@ -73,7 +73,10 @@ body{
     margin-right: 40px;
     padding-right: 10px;
     font-size: 30px;
+    display: grid; 
+    grid-template-columns: 4fr 1fr;
 }
+
 
 .action-button{
     background-color: #040996;

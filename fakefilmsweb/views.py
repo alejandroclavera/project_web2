@@ -33,8 +33,6 @@ class LoginRequiredCheckIsOwnerUpdateView(LoginRequiredMixin, CheckIsOwnerMixin,
         context['TITLE'] = 'EDIT'
         return context
 
-# Aplication Views
-
 # Movies Views
 class CreateMovie(LoginRequiredMixin, CreateView):
     model = Movie
@@ -106,18 +104,6 @@ class CreateEpisode(LoginRequiredMixin, CreateView):
         context['TITLE'] = 'NEW EPISODE'
         return context
 
-def episode_list(request, pk):
-    template = loader.get_template('fakefilmsweb/episode_list.html')
-    serie = Serie.objects.get(id=pk)
-    document = template.render({'serie':serie, 'episode_list':Episode.objects.all(), 'user':request.user})
-    return HttpResponse(document)
-
-def episode_info(request, pk_serie, pk_episode):
-    template = loader.get_template('fakefilmsweb/info_episode.html')
-    episode = Episode.objects.get(id=pk_episode)
-    document = template.render({'episode':episode, 'user':request.user})
-    return HttpResponse(document)
-
 class InfoEpisode(DetailView):
     model = Episode
     template_name = 'fakefilmsweb/info_episode.html'
@@ -131,12 +117,13 @@ def delete_episode(request, pkr, pk):
     else:
         return info_status(request, 'CAN\'T DELETE Episode')
 
+@login_required()
 def user_movie_list(request,pk):
     if request.user.id != pk:
         return info_status(request, 'NOT PERMITED USER')
     user = get_object_or_404(User, pk=pk)
     movies = UsersMovieList.objects.filter(user=user).all()
-    template = loader.get_template('fakefilmsweb/episode_list.html')
+    template = loader.get_template('fakefilmsweb/movie_user_list.html')
     document = template.render({'movie_list': movies, 'user': request.user})
     return HttpResponse(document)
 
@@ -166,6 +153,16 @@ def remove_movie_to_list(request, pk_user, pk_movie):
         return HttpResponseRedirect(user_movie.get_absolute_url())
     else:
        return info_status(request, 'MOVIE NOT FOUND')
+
+@login_required()
+def user_serie_list(request, pk):
+    if request.user.id != pk:
+        return info_status(request, 'NOT PERMITED USER')
+    user = get_object_or_404(User, pk=pk)
+    series = UsersSerieList.objects.filter(user=user).all()
+    template = loader.get_template('fakefilmsweb/serie_user_list.html')
+    document = template.render({'serie_list': series, 'user': request.user})
+    return HttpResponse(document)
 
 @login_required()
 def add_serie_to_list(request, pk_user, pk_serie):

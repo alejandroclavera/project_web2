@@ -4,7 +4,6 @@
 <div class="center">
     <h1 class="title">
         SERIES
-        {% if user.is_authenticated %}<a href="{% url 'fakefilmsweb:create_serie' %}"><img src="{% static "/images/add.jpg" %}" style="height: 30px; width: 30px;"></img></a>{% endif %}
     </h1>
     <ul class="list">
         {% for serie in serie_list %}

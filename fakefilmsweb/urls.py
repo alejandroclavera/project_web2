@@ -68,11 +68,7 @@ urlpatterns += [
 
 # serie user List paths
 urlpatterns += [
-    path('user/<int:pk>/series', ListView.as_view(
-        queryset=UsersSerieList.objects.all(),
-        context_object_name='serie_list',
-        template_name='fakefilmsweb/serie_user_list.html'
-    ), name='serie_user_list'),
+    path('user/<int:pk>/series', user_serie_list, name='serie_user_list'),
     path('user/<int:pk_user>/serie/<int:pk_serie>/add', add_serie_to_list, name='serie_list_add'),
     path('user/<int:pk_user>/serie/<int:pk_serie>/delete', remove_serie_to_list, name='serie_list_delete'),
 ]
