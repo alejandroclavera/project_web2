@@ -25,6 +25,7 @@
         </table>
         <div class="interaction-container">  
             {% if user.is_authenticated and user == episode.serie.user %}
+                <a class="action-button"  href="{% url 'fakefilmsweb:episode_edit' episode.serie.id episode.id %}">edit</a>
                 <a class="action-button"  href="{% url 'fakefilmsweb:episode_delete' episode.serie.id episode.id %}">delete</a>
         </div>
     </div>
