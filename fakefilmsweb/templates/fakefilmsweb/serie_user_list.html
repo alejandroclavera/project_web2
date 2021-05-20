@@ -8,9 +8,9 @@
     <ul class="list">
         {% for user_serie in serie_list %}
         {% if user_serie.user == user %}
-            <li class="list-element"><a href="{% url 'fakefilmsweb:info_serie' user_serie.serie.id %}">
+            <li class="list-element"><a class="link-list" href="{% url 'fakefilmsweb:info_serie' user_serie.serie.id %}">
                 {{ user_serie.serie.serie_name }}</a>
-                <a href="{% url 'fakefilmsweb:serie_list_delete' user.id user_serie.serie.id %}">-</a>
+                <a id="menos" href="{% url 'fakefilmsweb:serie_list_delete' user.id user_serie.serie.id %}"><img src="{% static "/images/minus.png" %}" style="height: 30px; width: 30px; margin-top: 3px;"></a>
             </li>
         {% endif %}
     </ul>

@@ -4,14 +4,14 @@
 <div class="center">
     <h1 class="title">
         SERIES
-        {% if user.is_authenticated %}<a href="{% url 'fakefilmsweb:create_serie' %}"><img src="{% static "/images/add.jpg" %}" style="height: 30px; width: 30px;"></img></a>{% endif %}
+        {% if user.is_authenticated %}<a  href="{% url 'fakefilmsweb:create_serie' %}"><img src="{% static "/images/add.jpg" %}" style="height: 30px; width: 30px;"></img></a>{% endif %}
     </h1>
     <ul class="list">
         {% for serie in serie_list %}
-        <li class="list-element"><a href="{% url 'fakefilmsweb:info_serie' serie.id %}">
+        <li class="list-element"><a class="link-list" href="{% url 'fakefilmsweb:info_serie' serie.id %}">
             {{ serie.serie_name }}</a>
             {% if user.is_authenticated %}
-            <a href="{% url 'fakefilmsweb:serie_list_add' user.id serie.id %}">+</a>
+            <a id="mas" href="{% url 'fakefilmsweb:serie_list_add' user.id serie.id %}"><img src="{% static "/images/add-to-mine.jpg" %}" style="height: 30px; width: 30px; margin-top: 3px;"></a>
             {% endif %}
         </li>
         {% empty %}<li class="no-elements-msg">Sorry, no series registered yet.</li>
