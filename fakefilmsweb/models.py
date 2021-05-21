@@ -6,8 +6,8 @@ from datetime import date
 
 # Model Movie
 class Movie(models.Model):
-    movie_name= models.CharField(max_length=30)
-    movie_category= models.CharField(max_length=50)
+    movie_name= models.CharField(max_length=100)
+    movie_category= models.CharField(max_length=100)
     year = models.CharField(max_length=30)
     director = models.CharField(max_length=30)
     user = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
@@ -21,8 +21,8 @@ class Movie(models.Model):
 
 # Model Serie
 class Serie(models.Model):
-    serie_name = models.CharField(max_length=30)
-    category = models.CharField(max_length=30)
+    serie_name = models.CharField(max_length=100)
+    category = models.CharField(max_length=100)
     year = models.CharField(max_length=30)
     number_of_seasons = models.PositiveIntegerField(default=1)
     user = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
@@ -39,7 +39,7 @@ class Episode(models.Model):
     serie = models.ForeignKey(Serie, related_name='episodes', on_delete=models.CASCADE)
     season = models.CharField(max_length=30)
     number = models.PositiveIntegerField(default=1)
-    name = models.CharField(max_length=30)
+    name = models.CharField(max_length=100)
     user = models.ForeignKey(User, default=1, on_delete=models.CASCADE)
 
     def __str__(self):
