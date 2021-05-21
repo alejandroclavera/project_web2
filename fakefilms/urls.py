@@ -25,3 +25,7 @@ urlpatterns = [
     path('accounts/logout/', views.LogoutView.as_view(), name='logout'),
     path('admin/', admin.site.urls),
 ]
+
+# Errors handlers
+handler403 = 'fakefilmsweb.error_views.error_403'
+
