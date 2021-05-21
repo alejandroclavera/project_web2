@@ -16,7 +16,7 @@ class Movie(models.Model):
         return self.movie_name
 
     def get_absolute_url(self):
-        return reverse('fakefilmsweb:movie_list')
+        return reverse('fakefilmsweb:info_movie', kwargs={'pk': self.pk})
 
 
 # Model Serie
@@ -31,7 +31,7 @@ class Serie(models.Model):
         return self.serie_name
 
     def get_absolute_url(self):
-        return reverse('fakefilmsweb:serie_list')
+        return reverse('fakefilmsweb:info_serie', kargs={'pk': self.pk} )
 
 
 # Model Episode

@@ -1,0 +1,173 @@
+body{
+    padding: 0px;
+    margin: 0px;
+    background-color: #fff;
+}
+
+.menu-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 3fr;
+    background-color: #040996;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+}
+
+.menu-text{
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    font-weight: bold;
+    margin: 0px;
+    padding-top: 15px;
+    text-align: center;
+}
+
+.menu-text:hover{
+    background-color: #0077E7;
+    
+}
+
+.login-element{
+    text-align: right;
+    padding-right: 40px; 
+    color: white; 
+    font-weight: bold;
+}
+
+.title{
+    padding: 10px;
+    color:#040996;
+    font-size: 100px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.subtitle{
+    padding: 10px;
+    color:#040996;
+    font-size: 30px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+}
+
+.status-title{
+    color: #0077E7;
+    font-size: 60px;
+}
+
+.error-msg{
+    font-size: 25px;
+    color: #c14743;
+    margin: 30px;
+}
+
+.list{
+    padding-left: 20px;
+    list-style: none;
+}
+
+.list-element{
+    margin-bottom: 15px;
+    padding-left: 2px;
+    margin-left: 20px;
+    padding-right: 10px;
+    font-size: 30px;
+    display: grid; 
+    grid-template-columns: 4fr 1fr;
+    column-gap: 15px;
+}
+
+.link-list{
+    text-decoration: none;
+    color: #040996;
+}
+
+.link-list:hover{
+    text-decoration: underline;
+}
+
+
+.action-button{
+    background-color: #040996;
+    color: #fff;
+    border-radius: 5px;
+    border-style: none;
+    padding: 8px;
+    text-decoration: inherit;
+    width: 60px;
+    text-align:center;
+}
+
+.status-action-button{
+    background-color: #0077E7;
+}
+
+.center{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+
+}
+
+.episode-list{
+    min-width: 200px;
+    background-color: #f2f2f2;
+    display: grid;
+    grid-template-columns: 1fr;
+    list-style:none;
+    padding-inline-start: 0px;
+    border: 1px solid #ddd;
+    border-bottom-style: none;
+}
+.episode-list li:nth-child(even){
+    background-color: #fff;
+}
+
+.episode-box{
+    border-bottom: 1px solid #ddd;
+    padding: 5px;
+    text-align: center;
+}
+
+.episode-element{
+    color: #000;
+    font-size: 15px;
+    margin-bottom: 6px; 
+    padding: 10px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.no-elements-msg{
+    color: #0077E7;
+    font-size: 30px;
+}
+/**Se pueden pasar a info.css**/
+.table{
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #000;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table td{
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ddd;
+
+}
+.table tr:nth-child(even){
+    background-color: #f2f2f2;
+}
+
+.interaction-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    padding: 20px;
+    column-gap:10px;
+}
+
+
