@@ -6,7 +6,7 @@ use_step_matcher("parse")
 def step_impl(context):
     context.browser.visit(context.get_url('fakefilmsweb:serie_list'))
 
-@then('I\'m viewing a list containing')
+@then('I\'m viewing a series list')
 def step_impl(context):
     serie_links = context.browser.find_by_css('div#content ul li a')
     for i, row in enumerate(context.table):

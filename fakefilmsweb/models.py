@@ -31,7 +31,7 @@ class Serie(models.Model):
         return self.serie_name
 
     def get_absolute_url(self):
-        return reverse('fakefilmsweb:info_serie', kargs={'pk': self.pk} )
+        return reverse('fakefilmsweb:info_serie', kwargs={'pk': self.pk} )
 
 
 # Model Episode

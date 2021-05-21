@@ -78,7 +78,8 @@ def delete_movie(request, pk):
         movie.delete()
         return info_status(request, 'MOVIE DELETED')
     else:
-        return info_status(request, 'CAN\'T DELETE MOVIE', next_url=reverse('fakefilmsweb:movie_list'))
+        raise PermissionDenied
+
 
 @login_required()
 def delete_serie(request, pk):
@@ -87,7 +88,7 @@ def delete_serie(request, pk):
         serie.delete()
         return info_status(request, 'SERIE DELETED')
     else:
-        return info_status(request, 'CAN\'T DELETE SERIE', next_url=reverse('fakefilmsweb:serie_list'))
+        raise PermissionDenied
 
 class CreateEpisode(LoginRequiredMixin, CreateView):
     model = Episode
@@ -115,12 +116,12 @@ def delete_episode(request, pkr, pk):
         episode.delete()
         return info_status(request, 'EPISODE DELETED', next_url=reverse('fakefilmsweb:serie_list'))
     else:
-        return info_status(request, 'CAN\'T DELETE Episode')
+        raise PermissionDenied
 
 @login_required()
 def user_movie_list(request,pk):
     if request.user.id != pk:
-        return info_status(request, 'NOT PERMITED USER')
+        raise PermissionDenied
     user = get_object_or_404(User, pk=pk)
     movies = UsersMovieList.objects.filter(user=user).all()
     template = loader.get_template('fakefilmsweb/movie_user_list.html')
@@ -131,7 +132,7 @@ def user_movie_list(request,pk):
 def add_movie_to_list(request, pk_user, pk_movie):
     # check if the user is the owner of list
     if request.user.id != pk_user:
-         return info_status(request, 'NOT PERMITED USER')
+         raise PermissionDenied
     user = get_object_or_404(User, pk=pk_user)
     movie = get_object_or_404(Movie, pk=pk_movie)
     if not UsersMovieList.objects.filter(user=user, movie=movie).exists():
@@ -144,7 +145,7 @@ def add_movie_to_list(request, pk_user, pk_movie):
 def remove_movie_to_list(request, pk_user, pk_movie):
     # check if the user is the owner of list
     if request.user.id != pk_user:
-         return info_status(request, 'NOT PERMITED USER')
+         raise PermissionDenied
     user = get_object_or_404(User, pk=pk_user)
     movie = get_object_or_404(Movie, pk=pk_movie)
     if UsersMovieList.objects.filter(user=user, movie=movie).exists():
@@ -152,12 +153,12 @@ def remove_movie_to_list(request, pk_user, pk_movie):
         user_movie.delete()
         return HttpResponseRedirect(user_movie.get_absolute_url())
     else:
-       return info_status(request, 'MOVIE NOT FOUND')
+       return HttpResponse(status=404)
 
 @login_required()
 def user_serie_list(request, pk):
     if request.user.id != pk:
-        return info_status(request, 'NOT PERMITED USER')
+        raise PermissionDenied
     user = get_object_or_404(User, pk=pk)
     series = UsersSerieList.objects.filter(user=user).all()
     template = loader.get_template('fakefilmsweb/serie_user_list.html')
@@ -168,7 +169,7 @@ def user_serie_list(request, pk):
 def add_serie_to_list(request, pk_user, pk_serie):
     # check if the user is the owner of list
     if request.user.id != pk_user:
-         return info_status(request, 'NOT PERMITED USER')
+         raise PermissionDenied
     user = get_object_or_404(User, pk=pk_user)
     serie = get_object_or_404(Serie, pk=pk_serie)
     if not UsersSerieList.objects.filter(user=user, serie=serie).exists():
@@ -189,7 +190,7 @@ def remove_serie_to_list(request, pk_user, pk_serie):
         user_serie.delete()
         return HttpResponseRedirect(user_serie.get_absolute_url())
     else:
-        return info_status(request, 'SERIE NOT FOUND')
+        raise PermissionDenied
 
 def info_status(request, message, next_url=None):
     template = loader.get_template('fakefilmsweb/info_status.html')
