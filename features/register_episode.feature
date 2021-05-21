@@ -5,21 +5,25 @@ Feature: Register episode
 
   Background: There is a registered user
     Given Exists a user "user" with password "password"
+    And Exists serie registered by "user"
+      | serie_name      | category | year   |
+      | Modern Family  | Comedy    | 2000   |
+      | Walking Dead   | Terror    | 2008   |
 
   Scenario: Register episode
     Given I login as user "user" with password "password"
-    When I register episode
-       | name            | serie_name    | season   | number |
-       |Boda de Haley    | Modern Family | 2        | 20     |
-    Then I'm viewing the details page for episode by "user"
-       | name            | serie_name    | season   | number |
-       |Boda de Haley    | Modern Family | 2        | 20     |
-    And There are 1 episode
+    When I register episode at serie "Modern Family"
+       | name            |  season   | number |
+       |Boda de Haley    |  2        | 20     |
+    Then I view the details for episode "Boda de Haley"
+       | name            | season   | number |
+       |Boda de Haley    | 2        | 20     |
+    And There are 1 episodes
   
     Scenario: Try to register a episode but not logged in
     Given I'm not logged in
-    When I register episode
-       | name            | serie_name    | season   | number |
-       |Boda de Haley    | Modern Family | 2        | 20     |
+    When I register episode at serie "Modern Family"
+       | name            | season   | number |
+       |Boda de Haley    | 2        | 20     |
     Then I'm redirected to the login form
-    And There are 0 episode
+    And There are 0 episodes

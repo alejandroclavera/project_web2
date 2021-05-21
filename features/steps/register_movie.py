@@ -39,7 +39,5 @@ def step_impl(context, username):
     q_list.append(Q(('user', User.objects.get(username=username))))
     from fakefilmsweb.models import Movie
     movie = Movie.objects.filter(reduce(operator.and_, q_list)).get()
-    print(context.browser.url)
-    print(context.get_url(movie))
     assert context.browser.url == context.get_url(movie)
 

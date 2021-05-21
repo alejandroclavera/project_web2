@@ -2,11 +2,12 @@ from behave import *
 
 use_step_matcher("parse")
 
-@when('I view the details for episode "{episode_name}"')
+@then('I view the details for episode "{episode_name}"')
 def step_impl(context, episode_name):
-    from fakefilmsweb.models import Episode
-    episode = Episode.objects.get(episode_name=episode_name)
-    context.browser.visit(context.get_url('fakefilmsweb:info_episode', episode.pk))
+    from fakefilmsweb.models import Serie, Episode
+    episode = Episode.objects.get(name=episode_name)
+    serie = Serie.objects.get(pk=episode.serie.pk)
+    context.browser.visit(context.get_url('fakefilmsweb:info_episode', serie.pk, episode.pk))
 
 @then("I'm viewing episode details including")
 def step_impl(context):

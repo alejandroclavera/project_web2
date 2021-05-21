@@ -5,17 +5,23 @@ Feature: List Episodes
 
   Background: There are 3 registered episodes by same user
     Given Exists a user "user" with password "password"
-    And Exists episode registered by "user"
-      | name            | serie_name    | season   | number |
-      |Boda de Haley    | Modern Family | 2        | 20     |
-      |Embarazo de Haley| Modern Family | 2        | 21     |
-      |Divorcio de Haley| Modern Family | 2        | 22     |
+    And Exists serie registered by "user"
+      | serie_name      | category | year   |
+      | Modern Family  | Comedy    | 2000   |
+      | Walking Dead   | Terror    | 2008   |
+
 
   Scenario: List the episode
-    When I list episode
-    Then I'm viewing a list containing
+    Given I login as user "user" with password "password"
+    When I register episode at serie "Modern Family"
+       | name              | season   | number |
+       | Boda de Haley     | 2        | 20    |
+       | Embarazo de Haley | 2        | 20    |
+       | Divorcio de Haley | 2        | 20    |
+    Then I list episode "Modern Family"
+    And Viewing a list episodes that containing
       | name            |
       |Boda de Haley    |
       |Embarazo de Haley|
       |Divorcio de Haley|
-    And The list contains 3 episode
+    And The list contains 3 episodes

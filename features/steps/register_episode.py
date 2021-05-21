@@ -5,16 +5,16 @@ import operator
 from django.db.models import Q
 import os
 
-from myrecommendations.settings import BASE_DIR
+from fakefilms.settings import BASE_DIR
 
 use_step_matcher("parse")
 
-@given('Exists episode at serie "{serie_name}" by "{username}"')
+@given('Exists episode at serie by "{username}"')
 def step_impl(context, serie_name, username):
     from django.contrib.auth.models import User
     user = User.objects.get(username=username)
     from fakefilmsweb.models import Serie
-    serie = Serie.objects.get(name=serie_name)
+    serie = Serie.objects.get(serie_name=serie_name)
     from fakefilmsweb.models import Episode
     for row in context.table:
         episode = Episode(serie=serie, user=user)
@@ -25,16 +25,12 @@ def step_impl(context, serie_name, username):
 @when('I register episode at serie "{serie_name}"')
 def step_impl(context, serie_name):
     from fakefilmsweb.models import Serie
-    serie = Serie.objects.get(name=serie_name)
+    serie = Serie.objects.get(serie_name=serie_name)
     for row in context.table:
         context.browser.visit(context.get_url('fakefilmsweb:episode_create', serie.pk))
         if context.browser.url == context.get_url('fakefilmsweb:episode_create', serie.pk):
             form = context.browser.find_by_tag('form').first
             for heading in row.headings:
-                if heading == 'image':
-                    filePath = os.path.join(BASE_DIR, row[heading])
-                    context.browser.fill(heading, filePath)
-                else:
                     context.browser.fill(heading, row[heading])
             form.find_by_value('Submit').first.click()
 
@@ -54,7 +50,7 @@ def step_impl(context, serie_name, username):
 @then('There are {count:n} episodes')
 def step_impl(context, count):
     from fakefilmsweb.models import Episode
-    assert count == episode.objects.count()
+    assert count == Episode.objects.count()
 
 @when('I edit the current episode')
 def step_impl(context):
