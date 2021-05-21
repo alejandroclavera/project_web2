@@ -23,4 +23,6 @@ Feature: Delete Serie
 
   Scenario: Force delete serie but not the owner permission exception
     Given I login as user "user2" with password "password"
+    When I delete the serie with name "Modern Family"
     Then There is no "serie" link available
+
